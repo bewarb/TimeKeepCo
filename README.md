@@ -26,3 +26,41 @@ Write a script to help read the files and check that the data of each transactio
 - **identify any transactions that appear in one file and not in the other**
 
 Interesting relationship is neither file is considered the "master" file, so we need to make a generalized system that can check both CSVs for discrepancies at the same time.
+
+Diagram:
+
+Class : TransactionComparator, which we have incorporated to display encapuslation principles of OOP
+
+The constructor of this class takes in 4 parameters other than self:
+
+    -file1: The first CSV file the user wants to check
+    -file2: The second CSV file the user wants to check
+    -column1="SPA": The SPA column
+    -column2="Service Code": The Service Code column
+
+The purpose of this class is to compare the data of two CSVs that contain data on transaction history and to
+then compile the missing data to later be revealed to a user in the terminal or in a CSV.
+
+Methods in this class:
+
+    -load_csv_into_df(self, csv_filepath): Loads the data of a csv into a dataframe, path given by user
+    -compare_columns_data(self): This compares the data of the dfs row by row and collects the missing data in a dictionary
+    -save_discrepancies_to_csv(self, discrepancies, save_path): This saves the missing data as a CSV for the user
+
+To run this program just with default arugments use:
+
+```
+$ .\TransactionComparator.py [file1] [file1] 
+```
+
+To run it and save the terminal to a CSV:
+
+```
+$ .\TransactionComparator.py [file1] [file1] -s
+```
+
+For help:
+
+```
+$ .\TransactionComparator.py -h
+```
